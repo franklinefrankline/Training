@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Form</title>
+  <style>
+    .form-container {
+      margin: 20px;
+    }
+    .form-input {
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    .delete-button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Student Form</h2>
+    <div class="form-input">
+      <label for="name">Name:</label>
+      <input type="text" id="name">
+    </div>
+    <div class="form-input">
+      <label for="age">Age:</label>
+      <input type="number" id="age">
+    </div>
+    <div class="form-input">
+      <label>Gender:</label>
+      <input type="radio" name="gender" value="Male" id="male">
+      <label for="male">Male</label>
+      <input type="radio" name="gender" value="Female" id="female">
+      <label for="female">Female</label>
+    </div>
+    <div class="form-input">
+      <label for="course">Course:</label>
+      <input type="text" id="course">
+    </div>
+    <div class="form-input">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email">
+    </div>
+    <button onclick="saveStudent()">SAVE</button>
+  </div>
+
+  <h2>Student List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Course</th>
+        <th>E-mail</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="student-table">
+      <!-- Student data will be added here -->
+    </tbody>
+  </table>
+
+  <script>
+    function saveStudent() {
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const course = document.getElementById('course').value;
+      const email = document.getElementById('email').value;
+
+      if (!name || !age || !gender || !course || !email) {
+        alert('All fields are required');
+        return;
+      }
+
+      const table = document.getElementById('student-table');
+      const newRow = table.insertRow();
+      newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${age}</td>
+        <td>${gender}</td>
+        <td>${course}</td>
